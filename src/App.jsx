@@ -55,9 +55,17 @@ function App() {
 
     <>
       <h1 className='text-center text-3xl font-semibold my-5'>Welcome to DevTown</h1>
+
+      <div className='flex gap-5 items-center justify-center my-5'>
+        <input type="text" placeholder="Type here" className="border-2 rounded-lg w-full max-w-md py-2 px-4" /> 
+
+        <button type='submit' className='bg-black text-white w-32 py-2 rounded-lg text-xl'>Search</button>
+      </div>
+
       <div className='flex flex-row gap-10'>
 
         <div className='w-72 h-[450px] grid grid-cols-1 px-10 sticky top-[10px]'>
+          <p className='text-center text-3xl font-semibold mb-3'>Category</p>
           {
             uniqueCategoryData.map((data, i) =>
               <h5 key={i}
@@ -67,6 +75,27 @@ function App() {
                 {data}
               </h5>)
           }
+
+          <div className=''>
+            <p className='text-center text-3xl font-semibold my-5'>Price</p>
+
+            <div className='flex gap-5'>
+              <input type="radio" name="radio-1" className="radio" /> <p>ALL</p>
+            </div>
+
+            <div className='flex gap-5'>
+              <input type="radio" name="radio-1" className="radio" /> <p>$0 - $150</p>
+            </div>
+
+            <div className='flex gap-5'>
+              <input type="radio" name="radio-1" className="radio" /> <p>$150 - $400</p>
+            </div>
+
+            <div className='flex gap-5'>
+              <input type="radio" name="radio-1" className="radio" /> <p>Over $400 </p>
+            </div>
+
+          </div>
         </div>
 
         <div className='grid grid-cols-3 gap-5'>
@@ -88,12 +117,12 @@ function App() {
                   </p>
                 </div>
               </div>
-              )}
+            )}
         </div>
 
       </div>
 
-      <div className="pagination text-center my-2">
+      <div className="pagination text-center mt-20 mb-5">
         {Array.from({ length: totalPages }).map((_, index) => (
           <button
             key={index}
@@ -110,4 +139,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
