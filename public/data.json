@@ -360,7 +360,7 @@
         "quantity": 0
     },
     {
-        "category": "Men's Sneaker",
+        "category": "Men's Shirt",
         "name": "MOVE FEELREADY SPORT TEE",
         "seller": "Addidas",
         "price": 14,
@@ -372,7 +372,7 @@
         "quantity": 0
     },
     {
-        "category": "Men's Sneaker",
+        "category": "Men's Shirt",
         "name": "ADIDAS CAMO BOX GRAPHIC TEE",
         "seller": "Addidas",
         "price": 16,
@@ -384,7 +384,7 @@
         "quantity": 0
     },
     {
-        "category": "Men's Sneaker",
+        "category": "Women's Shirt",
         "name": "ADICOLOR CLASSICS TREFOIL TEE",
         "seller": "Addidas",
         "price": 20,
@@ -396,7 +396,7 @@
         "quantity": 0
     },
     {
-        "category": "Men's Sneaker",
+        "category": "Men's Shirt",
         "name": "LNY TREFOIL FILL TEE",
         "seller": "Addidas",
         "price": 16,
@@ -408,7 +408,7 @@
         "quantity": 0
     },
     {
-        "category": "Men's Sneaker",
+        "category": "Men's Shirt",
         "name": "CREATOR 365 TEE",
         "seller": "Addidas",
         "price": 34,
@@ -420,7 +420,7 @@
         "quantity": 0
     },
     {
-        "category": "Men's Sneaker",
+        "category": "Women's Shirt",
         "name": "OWN THE RUN LONG SLEEVE TEE",
         "seller": "Addidas",
         "price": 23,
@@ -432,19 +432,19 @@
         "quantity": 0
     },
     {
-        "category": "Men's Sneaker",
+        "category": "Men's Shirt",
         "name": "NYC BADGE OF SPORT LOGO GRAPHIC TEE",
         "seller": "Addidas",
         "price": 29,
         "stock": 6,
         "ratings": 3,
         "ratingsCount": 805,
-        "img": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/e0101e13ac1940208478add1000e953a_9366/NYC_Badge_of_Sport_Logo_Graphic_Tee_White_HE2363_21_model.jpg",
+        "img": "https://m.media-amazon.com/images/I/61QOs4OhGvL._AC_UY1000_.jpg",
         "shipping": 6,
         "quantity": 0
     },
     {
-        "category": "Men's Sneaker",
+        "category": "Men's Shirt",
         "name": "RUNNER TEE",
         "seller": "Addidas",
         "price": 20,
@@ -456,7 +456,7 @@
         "quantity": 0
     },
     {
-        "category": "Men's Sneaker",
+        "category": "Men's Shirt",
         "name": "V-DAY TEE (GENDER NEUTRAL)",
         "seller": "Addidas",
         "price": 18,
@@ -468,7 +468,7 @@
         "quantity": 0
     },
     {
-        "category": "Men's Sneaker",
+        "category": "Men's Shirt",
         "name": "ESSENTIALS COLORBLOCK TEE",
         "seller": "Addidas",
         "price": 35,
