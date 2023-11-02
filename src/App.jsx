@@ -5,6 +5,7 @@ import './App.css'
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [productsData, setProductsData] = useState([]);
 
   useEffect(() => {
 
@@ -12,6 +13,7 @@ function App() {
       .then(res => res.json())
       .then(data => {
         setProducts(data)
+        setProductsData(data)
       })
 
   }, []);
@@ -23,6 +25,13 @@ function App() {
 
   const handleCategory = category => {
     console.log(category);
+
+    if (category !== "All") {
+      const filterCategory = products.filter((product) => product.category === category)
+      setProductsData(filterCategory);
+    } else {
+      setProductsData(products)
+    }
   }
   // Style component
 
@@ -33,7 +42,7 @@ function App() {
       <h1 className='text-center text-3xl font-semibold my-5'>Welcome to DevTown</h1>
       <div className='flex flex-row gap-10'>
 
-        <div className='w-1/2 h-[450px] grid grid-cols-1 px-10 sticky top-[10px]'>
+        <div className='w-72 h-[450px] grid grid-cols-1 px-10 sticky top-[10px]'>
           {
             categoryData.map((data, i) =>
               <h5 key={i}
@@ -47,9 +56,9 @@ function App() {
 
         <div className='grid grid-cols-3 gap-5'>
           {
-            products?.map((product, i) =>
-              <div key={i} className='rounded-lg w-full m-2 pb-5 border-2'>
-                <img src={product.img} className='rounded-t-lg mx-auto' alt="" />
+            productsData?.map((product, i) =>
+              <div key={i} className='rounded-lg w-96 m-2 pb-5 border-2'>
+                <img src={product.img} className=' rounded-t-lg mx-auto' alt="" />
                 <h1 className='font-semibold text-center py-2 text-2xl '>{product.name}</h1>
                 <div className='py-1 pl-5'>
                   <p><span className='text-xl'>category:</span> {product.category}</p>
