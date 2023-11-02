@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+import styled from 'styled-components';
 import './App.css'
 
 function App() {
   const [products, setProducts] = useState([]);
   const [productsData, setProductsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedPriceRange, setSelectedPriceRange] = useState('all');
   const productsPerPage = 9;
 
   useEffect(() => {
@@ -20,18 +22,19 @@ function App() {
 
   }, []);
 
+  // page calculations
   const totalPages = Math.ceil(productsData.length / productsPerPage);
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
   const currentProducts = productsData.slice(startIndex, endIndex);
 
+  // data for categories
   const categoryData = products?.map(product => product.category);
   const uniqueCategoryData = ["All", ...new Set(categoryData)];
-
   // console.log(['uniqueCategoryData'], uniqueCategoryData);
 
   const handleCategory = category => {
-    console.log(category);
+    // console.log(category);
 
     if (category !== "All") {
       const filterCategory = products.filter((product) => product.category === category)
@@ -39,7 +42,7 @@ function App() {
     } else {
       setProductsData(products)
     }
-
+    // handlePrice();
     setCurrentPage(1);
   }
 
@@ -47,94 +50,314 @@ function App() {
     setCurrentPage(page);
   };
 
+  const handlePrice = (PriceRange) => {
+
+    if (PriceRange === '0-150') {
+      const filteredProducts = productsData.filter((product) => product.price >= 0 && product.price <= 150);
+      setProductsData(filteredProducts)
+
+    } else if (PriceRange === '150-400') {
+      const filteredProducts = productsData.filter((product) => product.price >= 150 && product.price <= 400);
+      setProductsData(filteredProducts)
+
+    } else if (PriceRange === 'over400') {
+      const filteredProducts = productsData.filter((product) => product.price > 400);
+      setProductsData(filteredProducts)
+
+    } else if (PriceRange === 'all') {
+      setProductsData(products)
+    }
+
+  };
+
 
   // Style component
+  const AppContainer = styled.div`
+  text-align: center;
+  margin: 2rem 0;
 
+  h1{
+    font-size: 3rem;
+    font-weight: bold;
+  }
+`;
+
+  const InputContainer = styled.div`
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+`;
+
+  const Input = styled.input`
+  border: 1px solid ;
+  border-radius: 10px;
+  width: 30vw;
+  padding: 20px 15px;
+`;
+
+  const SearchButton = styled.button`
+  background-color: #000;
+  color: #fff;
+  width: 10rem;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 2rem;
+`;
+
+  const DataContainer = styled.div`
+display: flex;
+direction: row
+gap: 2rem;
+`;
+
+  const CategoryContainer = styled.div`
+  width: 18rem;
+  height: 95vh;
+  grid-template-columns: 1fr;
+  padding: 1rem ;
+  margin: 0 1rem 0 0;
+  position: sticky;
+  top: 0px;
+  `;
+
+  const CategoryHeading = styled.p`
+  text-align: center;
+  font-size: 2rem;
+  font-weight: semibold;
+  margin-bottom: 1rem;
+`;
+
+  const CategoryItem = styled.p`
+  margin-top: 20px;
+  text-align: left;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px 25px;
+  cursor: pointer;
+`;
+
+  const ProductContainer = styled.div`
+  width: 0px;
+`;
+
+  const ProductGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+`;
+
+
+
+  const PriceRangeContainer = styled.div`
+  text-align: center;
+  margin-top: 1rem;
+`;
+
+  const PriceRangeHeading = styled.p`
+  font-size: 2rem;
+  font-weight: semibold;
+  margin: 1rem 0 0 0;
+`;
+
+  const PriceRangeForm = styled.form`
+  padding: 2px;
+`;
+
+  const PriceRangeItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 25px;
+  height: 30px
+  
+`;
+
+  const PriceRangeInput = styled.input`
+  margin-right: 1px;
+`;
+
+  const PriceRangeLabel = styled.p`
+  font-size: 20px;
+`;
+
+  const ProductCard = styled.div`
+  width: 29rem;
+  margin: 2rem;
+  padding-bottom: 1rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+
+  .ProductImage{
+    border-radius: 16px 16px 0 0;
+    width: 100%;
+  }
+
+  .productTitle{
+  font-size: 25px;
+  padding: 10px 5px
+  }
+
+  p{
+    text-align: left; 
+    padding: 5px 15px;
+
+    span{
+      font-size:22px;
+      font-weight: semibold;
+      padding-right:15px;
+    }
+  }
+  
+`;
+
+  const Ratings = styled.p`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+  const Pagination = styled.p`
+  margin-top: 120px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  
+
+  p{
+  border-radius: 50px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  padding: 15px 18px;
+  margin: 0 15px;
+  background-color: rgb(203 213 225);
+}
+`;
 
   return (
+    <AppContainer>
+      <h1>Welcome to DevTown</h1>
+      <InputContainer>
+        <Input type="text" placeholder="Type here" />
+        <SearchButton>Search</SearchButton>
+      </InputContainer>
 
-    <>
-      <h1 className='text-center text-3xl font-semibold my-5'>Welcome to DevTown</h1>
+      <DataContainer className="dataContainer">
+        <CategoryContainer>
+          <CategoryHeading>Category</CategoryHeading>
 
-      <div className='flex gap-5 items-center justify-center my-5'>
-        <input type="text" placeholder="Type here" className="border-2 rounded-lg w-full max-w-md py-2 px-4" /> 
+          {uniqueCategoryData.map((data, i) => (
+            <CategoryItem key={i} onClick={() => handleCategory(data)}>
+              {data}
+            </CategoryItem>
+          ))}
+          <PriceRangeContainer>
+            <PriceRangeHeading>Price</PriceRangeHeading>
 
-        <button type='submit' className='bg-black text-white w-32 py-2 rounded-lg text-xl'>Search</button>
-      </div>
+            <PriceRangeForm>
 
-      <div className='flex flex-row gap-10'>
+              <PriceRangeItem>
+                <PriceRangeInput
+                  type="radio"
+                  name="price-range"
+                  value="all"
+                  checked={selectedPriceRange === 'all'}
+                  onChange={() => setSelectedPriceRange('all')}
+                  onClick={() => handlePrice("all")}
+                />
+                <PriceRangeLabel>ALL</PriceRangeLabel>
+              </PriceRangeItem>
 
-        <div className='w-72 h-[450px] grid grid-cols-1 px-10 sticky top-[10px]'>
-          <p className='text-center text-3xl font-semibold mb-3'>Category</p>
-          {
-            uniqueCategoryData.map((data, i) =>
-              <h5 key={i}
-                className='my-2 border-2 rounded-lg py-1 px-5 cursor-pointer'
-                onClick={() => handleCategory(data)}
-              >
-                {data}
-              </h5>)
-          }
+              <PriceRangeItem>
+                <PriceRangeInput
+                  type="radio"
+                  name="price-range"
+                  value="0-150"
+                  checked={selectedPriceRange === '0-150'}
+                  onChange={() => setSelectedPriceRange('0-150')}
+                  onClick={() => handlePrice("0-150")}
+                />
+                <PriceRangeLabel>$0 - $150</PriceRangeLabel>
+              </PriceRangeItem>
 
-          <div className=''>
-            <p className='text-center text-3xl font-semibold my-5'>Price</p>
+              <PriceRangeItem>
+                <PriceRangeInput
+                  type="radio"
+                  name="price-range"
+                  value="150-400"
+                  checked={selectedPriceRange === '150-400'}
+                  onChange={() => setSelectedPriceRange('150-400')}
+                  onClick={() => handlePrice("150-400")}
+                />
+                <PriceRangeLabel>$150 - $400</PriceRangeLabel>
+              </PriceRangeItem>
 
-            <div className='flex gap-5'>
-              <input type="radio" name="radio-1" className="radio" /> <p>ALL</p>
-            </div>
+              <PriceRangeItem>
+                <PriceRangeInput
+                  type="radio"
+                  name="price-range"
+                  value="over400"
+                  checked={selectedPriceRange === 'over400'}
+                  onChange={() => setSelectedPriceRange('over400')}
+                  onClick={() => handlePrice('over400')}
+                />
+                <PriceRangeLabel>Over $400</PriceRangeLabel>
+              </PriceRangeItem>
 
-            <div className='flex gap-5'>
-              <input type="radio" name="radio-1" className="radio" /> <p>$0 - $150</p>
-            </div>
+            </PriceRangeForm>
 
-            <div className='flex gap-5'>
-              <input type="radio" name="radio-1" className="radio" /> <p>$150 - $400</p>
-            </div>
+          </PriceRangeContainer>
+        </CategoryContainer>
 
-            <div className='flex gap-5'>
-              <input type="radio" name="radio-1" className="radio" /> <p>Over $400 </p>
-            </div>
+        <ProductContainer>
+          {currentProducts.length >= 1 ? (
+            <ProductGrid>
 
-          </div>
-        </div>
-
-        <div className='grid grid-cols-3 gap-5'>
-          {
-            currentProducts?.map((product, i) =>
-              <div key={i} className='rounded-lg w-96 m-2 pb-5 border-2'>
-                <img src={product.img} className=' rounded-t-lg mx-auto' alt="" />
-                <h1 className='font-semibold text-center py-2 text-2xl '>{product.name}</h1>
-                <div className='py-1 pl-5'>
-                  <p><span className='text-xl'>category:</span> {product.category}</p>
-                  <p><span className='text-xl'>seller:</span> {product.seller}</p>
-                  <p><span className='text-xl'>stock:</span> {product.stock}</p>
-                  <p><span className='text-xl'>Price:</span> ${product.price}</p>
-                  <p className='flex gap-3 items-center '><span className='text-xl'>ratings:</span> {product.ratings}<Rating
-                    style={{ maxWidth: 100 }}
-                    value={product.ratings}
-                    readOnly
-                  />
+              {currentProducts.map((product, i) => (
+                <ProductCard key={i}>
+                  <img src={product.img} className='ProductImage' alt="" />
+                  <h1 className='productTitle'>{product.name}</h1>
+                  <p>
+                    <span className=''>Category:</span>
+                    {product.category}
                   </p>
-                </div>
-              </div>
-            )}
-        </div>
 
-      </div>
+                  <p>
+                    <span className=''>Seller:</span>
+                    {product.seller}
+                  </p>
+                  <p>
+                    <span className=''>Stock:</span> {product.stock}
+                  </p>
+                  <p>
+                    <span className=''>Price:</span> ${product.price}
+                  </p>
+                  <Ratings className=''>
+                    <span className=''>Ratings:</span> {product.ratings}<Rating
+                      style={{ maxWidth: 100 }}
+                      value={product.ratings}
+                      readOnly
+                    />
+                  </Ratings>
+                </ProductCard>
+              ))}
+            </ProductGrid>
+          ) : (
+            <p>There is No products</p>
+          )}
+        </ProductContainer>
+      </DataContainer>
 
-      <div className="pagination text-center mt-20 mb-5">
+      <Pagination className="pagination">
         {Array.from({ length: totalPages }).map((_, index) => (
-          <button
+          <div
             key={index}
-            onClick={() => handlePageChange(index + 1)}
-            className={`pagination-button  ${currentPage === index + 1 ? 'active' : ''
-              }`}
-          >
-            <p className='border-2 px-5 mx-2'>{index + 1}</p>
-          </button>
+            onClick={() => handlePageChange(index + 1)} >
+            <p >{index + 1}</p>
+          </div>
         ))}
-      </div>
-    </>
+      </Pagination>
+
+    </AppContainer>
 
   )
 }
