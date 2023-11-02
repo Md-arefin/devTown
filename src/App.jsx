@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 import './App.css'
 
 function App() {
@@ -46,16 +48,21 @@ function App() {
         <div className='grid grid-cols-3 gap-5'>
           {
             products?.map((product, i) =>
-              <div key={i} className='rounded-lg w-full m-2 border-2'>
+              <div key={i} className='rounded-lg w-full m-2 pb-5 border-2'>
                 <img src={product.img} className='rounded-t-lg mx-auto' alt="" />
                 <h1 className='font-semibold text-center py-2 text-2xl '>{product.name}</h1>
-                <div className='py-1 pl-10'>
+                <div className='py-1 pl-5'>
                   <p><span className='text-xl'>category:</span> {product.category}</p>
                   <p><span className='text-xl'>seller:</span> {product.seller}</p>
-                  <p><span className='text-xl'>shipping:</span> ${product.shipping}</p>
                   <p><span className='text-xl'>stock:</span> {product.stock}</p>
+                  <p><span className='text-xl'>shipping:</span> ${product.shipping}</p>
                   <p><span className='text-xl'>Price:</span> ${product.price}</p>
-                  <p><span className='text-xl'>ratings:</span> {product.ratings}</p>
+                  <p className='flex gap-3 items-center '><span className='text-xl'>ratings:</span> {product.ratings}<Rating
+                    style={{ maxWidth: 100 }}
+                    value={product.ratings}
+                    readOnly
+                  />
+                  </p>
                 </div>
               </div>)
           }
