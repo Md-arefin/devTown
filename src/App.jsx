@@ -85,10 +85,10 @@ function App() {
     );
 
     const combinedResults = [...filteredByName, ...filteredByCategory];
-    const uniqueResults =[...new Set(combinedResults)];
+    const uniqueResults = [...new Set(combinedResults)];
 
     setProductsData(uniqueResults);
-    setCurrentPage(1);0
+    setCurrentPage(1); 0
   };
 
 
@@ -120,19 +120,23 @@ function App() {
 `;
 
   const InputContainer = styled.div`
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  justify-content: center;
-  margin: 2rem 0;
+    form{
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+      margin: 2rem 0;
+  }
 
   @media (max-width: 576px) {
+    form{
   display: flex;
   flex-direction: column;
   gap: 2rem;
   align-items: center;
   justify-content: center;
   margin: 2rem 0;
+    }
   }
 `;
 
@@ -198,7 +202,7 @@ gap: 2rem;
     padding: 1rem ;
   }
 
-  @media (min-width: 577px) and (max-width: 768px) {
+  @media (min-width: 577px) and (max-width: 2560px) {
     width: 18rem;
     margin: 0 .1rem;
     padding: .5rem ;
@@ -235,9 +239,18 @@ gap: 2rem;
     grid-template-columns: repeat(1, 1fr);
   }
 
-  @media (min-width: 577px) and (max-width: 768px) {
+  @media (min-width: 577px) and (max-width: 1024px) {
     grid-template-columns: repeat(1, 1fr);
   }
+
+  @media (min-width: 1030px) and (max-width: 1444px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1445px) and (max-width: 2560px) {
+    //   grid-template-columns: repeat(3, 1fr);
+    // }
+
 `;
 
 
