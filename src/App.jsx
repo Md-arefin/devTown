@@ -9,6 +9,7 @@ function App() {
   const [productsData, setProductsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedPriceRange, setSelectedPriceRange] = useState('all');
+  // const [searchQuery, setSearchQuery] = useState("");
   const productsPerPage = 9;
 
   useEffect(() => {
@@ -42,7 +43,6 @@ function App() {
     } else {
       setProductsData(products)
     }
-    // handlePrice();
     setCurrentPage(1);
   }
 
@@ -68,6 +68,27 @@ function App() {
       setProductsData(products)
     }
 
+  };
+
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const searchQuery = form.searchQuery.value.toLowerCase();
+
+    const filteredByName = products.filter((product) =>
+      product.name.toLowerCase().includes(searchQuery)
+    );
+
+    const filteredByCategory = products.filter((product) =>
+      product.category.toLowerCase().includes(searchQuery)
+    );
+
+    const combinedResults = [...filteredByName, ...filteredByCategory];
+    const uniqueResults =[...new Set(combinedResults)];
+
+    setProductsData(uniqueResults);
+    setCurrentPage(1);0
   };
 
 
@@ -323,8 +344,15 @@ gap: 2rem;
     <AppContainer>
       <h1>Welcome to DevTown</h1>
       <InputContainer>
-        <Input type="text" placeholder="Type here" />
-        <SearchButton>Search</SearchButton>
+        <form onSubmit={handleSearch}>
+          <Input
+            type="text"
+            placeholder="Type here"
+            name="searchQuery"
+
+          />
+          <SearchButton type='submit'>Search</SearchButton>
+        </form>
       </InputContainer>
 
       <DataContainer className="dataContainer">
