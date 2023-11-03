@@ -80,6 +80,14 @@ function App() {
     font-size: 3rem;
     font-weight: bold;
   }
+
+  @media (max-width: 576px) {
+    width: 374px;
+    h1{
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
 `;
 
   const InputContainer = styled.div`
@@ -88,6 +96,15 @@ function App() {
   align-items: center;
   justify-content: center;
   margin: 2rem 0;
+
+  @media (max-width: 576px) {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  }
 `;
 
   const Input = styled.input`
@@ -95,6 +112,10 @@ function App() {
   border-radius: 10px;
   width: 30vw;
   padding: 20px 15px;
+
+  @media (max-width: 576px) {
+    width: 80vw;
+  }
 `;
 
   const SearchButton = styled.button`
@@ -104,22 +125,46 @@ function App() {
   padding: 10px;
   border-radius: 10px;
   font-size: 2rem;
+
+  @media (max-width: 576px) {
+    width: 8rem;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+
+  
 `;
 
   const DataContainer = styled.div`
 display: flex;
 direction: row
 gap: 2rem;
+
+@media (max-width: 576px) {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 `;
 
+
+  // position: sticky;
+  // top: 0px;
   const CategoryContainer = styled.div`
   width: 18rem;
   height: 95vh;
   grid-template-columns: 1fr;
   padding: 1rem ;
   margin: 0 1rem 0 0;
-  position: sticky;
-  top: 0px;
+
+
+  @media (max-width: 576px) {
+    width: 90%;
+    height: 57rem;
+    margin: 0 .1rem;
+    padding: 1rem ;
+  }
   `;
 
   const CategoryHeading = styled.p`
@@ -134,19 +179,22 @@ gap: 2rem;
   text-align: left;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  padding: 10px 25px;
+  padding: 15px 25px;
   cursor: pointer;
 `;
 
   const ProductContainer = styled.div`
-  width: 0px;
+
 `;
 
   const ProductGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-`;
 
+  @media (max-width: 576px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+`;
 
 
   const PriceRangeContainer = styled.div`
@@ -208,6 +256,12 @@ gap: 2rem;
       padding-right:15px;
     }
   }
+
+
+  @media (max-width: 576px) {
+    width: 90vw;
+    margin: 10px;
+  }
   
 `;
 
@@ -218,7 +272,7 @@ gap: 2rem;
 `;
 
   const Pagination = styled.p`
-  margin-top: 120px;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   cursor: pointer;
@@ -231,7 +285,16 @@ gap: 2rem;
   margin: 0 15px;
   background-color: rgb(203 213 225);
 }
+
+@media (max-width: 576px) {
+  p{
+    padding: 5px 8px;
+    margin: 0 5px;
+  }
+}
 `;
+
+
 
   return (
     <AppContainer>
