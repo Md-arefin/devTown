@@ -88,6 +88,14 @@ function App() {
       font-weight: bold;
     }
   }
+
+  @media (min-width: 577px) and (max-width: 768px) {
+    width:  750px;
+    h1{
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+  }
 `;
 
   const InputContainer = styled.div`
@@ -115,6 +123,10 @@ function App() {
 
   @media (max-width: 576px) {
     width: 80vw;
+  }
+
+  @media (min-width: 577px) and (max-width: 768px) {
+    width: 50vw;
   }
 `;
 
@@ -153,7 +165,7 @@ gap: 2rem;
   // top: 0px;
   const CategoryContainer = styled.div`
   width: 18rem;
-  height: 95vh;
+  height: 57rem;
   grid-template-columns: 1fr;
   padding: 1rem ;
   margin: 0 1rem 0 0;
@@ -161,9 +173,16 @@ gap: 2rem;
 
   @media (max-width: 576px) {
     width: 90%;
-    height: 57rem;
     margin: 0 .1rem;
     padding: 1rem ;
+  }
+
+  @media (min-width: 577px) and (max-width: 768px) {
+    width: 18rem;
+    margin: 0 .1rem;
+    padding: .5rem ;
+    position: sticky;
+    top: 0px;
   }
   `;
 
@@ -192,6 +211,10 @@ gap: 2rem;
   grid-template-columns: repeat(3, 1fr);
 
   @media (max-width: 576px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media (min-width: 577px) and (max-width: 768px) {
     grid-template-columns: repeat(1, 1fr);
   }
 `;
